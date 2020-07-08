@@ -11,6 +11,7 @@
   "license": "MIT",
   "devDependencies": {},
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "ipaddr.js": "^1.9.1"
   }
 }
