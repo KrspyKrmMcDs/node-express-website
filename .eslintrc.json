@@ -2,7 +2,7 @@
   "env": {
     "browser": true,
     "commonjs": true,
-    "es6": true
+    "es2020": true
   },
   "extends": ["airbnb-base", "prettier"],
   "plugins": ["prettier"],
@@ -11,7 +11,7 @@
     "SharedArrayBuffer": "readonly"
   },
   "parserOptions": {
-    "ecmaVersion": 2018
+    "ecmaVersion": 11
   },
   "rules": {}
 }
