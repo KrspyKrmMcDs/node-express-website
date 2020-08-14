@@ -5,16 +5,21 @@ const app = express();
 
 const port = 3000;
 
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, './views'));
+
+console.log('restarting');
+
 app.use(express.static(path.join(__dirname, './static')));
 
 app.get('/', (request, response) => {
-    response.sendFile(path.join(__dirname, './static/index.html'))
+  response.sendFile(path.join(__dirname, './static/index.html'));
 });
 
 app.get('/speakers', (request, response) => {
-    response.sendFile(path.join(__dirname, './static/speakers.html'))
+  response.sendFile(path.join(__dirname, './static/speakers.html'));
 });
 
 app.listen(port, () => {
-    console.log(`Express server listening on port ${port}!`);
+  console.log(`Express server listening on port ${port}!`);
 });
