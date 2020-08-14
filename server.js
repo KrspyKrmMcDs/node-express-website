@@ -13,7 +13,7 @@ console.log('restarting');
 app.use(express.static(path.join(__dirname, './static')));
 
 app.get('/', (request, response) => {
-  response.sendFile(path.join(__dirname, './static/index.html'));
+  response.render('pages/index', { pageTitle: 'Welcome' });
 });
 
 app.get('/speakers', (request, response) => {
