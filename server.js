@@ -33,6 +33,9 @@ app.use(express.static(path.join(__dirname, './static')));
 app.use(async (request, response, next) => {
   try {
     const names = await speakersService.getNames();
+    response.locals.speakerNames = names;
+    console.log(response.locals);
+    return next();
   } catch (err) {
     next(err);
   }
