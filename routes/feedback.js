@@ -10,10 +10,15 @@ module.exports = (params) => {
   router.get('/', async (request, response, next) => {
     try {
       const feedback = await feedbackService.getList();
+
+      const errors = request.session.feedback ? request.session.feedback.errors : false;
+      request.session.feedback = {};
+
       return response.render('layout', {
         pageTitle: 'Feedback',
         template: 'feedback',
         feedback,
+        errors,
       });
     } catch (err) {
       return next(err);
