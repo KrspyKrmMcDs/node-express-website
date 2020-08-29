@@ -1,5 +1,12 @@
 [
   {
+    "name": "Jake",
+    "email": "test@test.com",
+    "title": "REST Title Test",
+    "message": "This was sent via REST"
+  },
+  { "name": "John", "email": "john@test.com", "title": "Great", "message": "We did it!" },
+  {
     "name": "Frank",
     "email": "frank-smith@gmail.com",
     "title": "Best Meetup Ever",
