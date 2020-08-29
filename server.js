@@ -3,6 +3,8 @@ const path = require('path');
 const cookieSession = require('cookie-session');
 const createError = require('http-errors');
 
+const bodyParser = require('body-parser');
+
 const FeedbackService = require('./services/FeedbackService');
 const SpeakersService = require('./services/SpeakerService');
 
@@ -23,6 +25,8 @@ app.use(
     keys: ['hljlewrwerlkj', '23lkj234lkjj'],
   })
 );
+
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, './views'));
@@ -49,7 +53,7 @@ app.use((request, response, next) => {
   return next(createError(404, 'File not found'));
 });
 
-app.use((err, request, response, next) => {
+app.use((err, request, response) => {
   response.locals.message = err.message;
   console.error(err);
   const status = err.status || 500;

@@ -4,12 +4,13 @@ const router = express.Router();
 
 module.exports = (params) => {
   const { feedbackService } = params;
+
   router.get('/', async (request, response, next) => {
     try {
       const feedback = await feedbackService.getList();
       return response.render('layout', {
-        pageTitle: 'Welcome',
-        template: 'index',
+        pageTitle: 'Feedback',
+        template: 'feedback',
         feedback,
       });
     } catch (err) {
@@ -18,6 +19,7 @@ module.exports = (params) => {
   });
 
   router.post('/', (request, response) => {
+    console.log(request.body);
     return response.send('Feedback form posted');
   });
 
