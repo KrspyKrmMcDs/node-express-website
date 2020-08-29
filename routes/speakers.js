@@ -5,15 +5,34 @@ const router = express.Router();
 module.exports = (params) => {
   const { speakersService } = params;
 
-  router.get('/', async (request, response) => {
-    const speakers = await speakersService.getList();
-    response.render('layout', { pageTitle: 'Speakers', template: 'speakers', speakers });
+  router.get('/', async (request, response, next) => {
+    try {
+      const artwork = await speakersService.getAllArtwork();
+      const speakers = await speakersService.getList();
+      return response.render('layout', {
+        pageTitle: 'Speakers',
+        template: 'speakers',
+        speakers,
+        artwork,
+      });
+    } catch (err) {
+      return next(err);
+    }
   });
 
-  router.get('/:shortname', async (request, response) => {
-    const speaker = await speakersService.getSpeaker(request.params.shortname);
-    console.log(speaker);
-    response.render('layout', { pageTitle: 'Speakers', template: 'speakers-detail', speaker });
+  router.get('/:shortname', async (request, response, next) => {
+    try {
+      const speaker = await speakersService.getSpeaker(request.params.shortname);
+      const artwork = await speakersService.getArtworkForSpeaker(request.params.shortname);
+      return response.render('layout', {
+        pageTitle: 'Speakers',
+        template: 'speakers-detail',
+        speaker,
+        artwork,
+      });
+    } catch (err) {
+      return next(err);
+    }
   });
 
   return router;
